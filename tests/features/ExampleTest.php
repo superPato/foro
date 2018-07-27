@@ -5,7 +5,7 @@ use App\User;
 
 class ExampleTest extends FeatureTestCase
 {
-    
+
     function test_basic_example()
     {
         $user = factory(User::class)->create([
