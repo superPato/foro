@@ -13,6 +13,11 @@ Route::post('posts/create', [
     'as'   => 'posts.store'
 ]);
 
+// Votes
+Route::post('posts/{post}-{slug}/vote', [
+    'uses' => 'VotePostController@upvote'
+])->where('post', '[0-9]+');
+
 // Comments
 Route::post('posts/{post}/comment', [
     'uses' => 'CommentController@store',
