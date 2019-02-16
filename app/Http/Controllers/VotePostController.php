@@ -2,14 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\{Post, Vote};
+use App\Post;
+use App\VoteRepository;
 use Illuminate\Http\Request;
 
 class VotePostController extends Controller
 {
+    /**
+     * @var VoteRepository
+     */
+    private $voteRepository;
+
+    public function __construct(VoteRepository $voteRepository)
+    {
+        $this->voteRepository = $voteRepository;
+    }
+
     public function upvote(Post $post)
     {
-        Vote::upvote($post);
+        $this->voteRepository->upvote($post);
 
         return [
             'new_score' => $post->score,
@@ -19,7 +30,7 @@ class VotePostController extends Controller
 
     public function downvote(Post $post)
     {
-        Vote::downvote($post);
+        $this->voteRepository->downvote($post);
 
         return [
             'new_score' => $post->score,
@@ -29,7 +40,7 @@ class VotePostController extends Controller
 
     public function undoVote(Post $post)
     {
-        Vote::undoVote($post);
+        $this->voteRepository->undoVote($post);
 
         return [
             'new_score' => $post->score,
