@@ -56,7 +56,7 @@ class VoteForPostTest extends \TestCase
 
         $post = $this->createPost();
 
-        app(VoteRepository::class)->upvote($post);
+        $post->upvote();
 
         $this->deleteJson($post->url . '/vote')
             ->assertSuccessful()
