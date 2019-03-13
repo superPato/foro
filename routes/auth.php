@@ -14,11 +14,11 @@ Route::post('posts/create', [
 ]);
 
 // Votes
-Route::post('posts/{post}-{slug}/upvote', [
+Route::post('posts/{post}-{slug}/vote/1', [
     'uses' => 'VotePostController@upvote'
 ])->where('post', '[0-9]+');
 
-Route::post('posts/{post}-{slug}/downvote', [
+Route::post('posts/{post}-{slug}/vote/-1', [
     'uses' => 'VotePostController@downvote'
 ])->where('post', '[0-9]+');
 
