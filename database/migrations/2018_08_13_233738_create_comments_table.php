@@ -21,8 +21,10 @@ class CreateCommentsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->unsignedInteger('post_id')->unsigned();
+            $table->unsignedInteger('post_id');
             $table->foreign('post_id')->references('id')->on('posts');
+
+            $table->integer('score')->default(0);
 
             $table->timestamps();
         });
